@@ -59,8 +59,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int findByUid(Member member) {
-		return memberDAO.searchByID(member);
+	public int findByEmail(Member member) {
+		return memberDAO.searchByEmail(member);
 	}
 
 	@Override

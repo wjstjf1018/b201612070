@@ -164,9 +164,12 @@ public class MemberViewController implements Initializable {
 			Member newMember = 
 					new Member(tfEmail.getText(), tfPw.getText(), tfName.getText(), 
 							tfBirth.getText(), "", tfAddress.getText(), tfContact.getText()); // 7개 필드임
-			data.add(newMember);			
-			tableViewMember.setItems(data);
-			memberService.create(newMember);
+			if(memberService.findByEmail(newMember)<0) { 	
+				data.add(newMember);			
+				tableViewMember.setItems(data);
+				memberService.create(newMember);		
+			}
+
 		} else
 			showAlert("필수항목 완벽한 입력 ");
 	}
@@ -176,7 +179,10 @@ public class MemberViewController implements Initializable {
 				tfBirth.getText(), "", tfAddress.getText(), tfContact.getText());
 
 		int selectedIndex = tableViewMember.getSelectionModel().getSelectedIndex();
-		if (selectedIndex >= 0) {
+		if(selectedIndex != memberService.findByEmail(newMember)) {
+			showAlert("이메일을 수정하면 업데이트 할 수 없습니다.");
+		}
+		else if (selectedIndex >= 0) {
 			tableViewMember.getItems().set(selectedIndex, newMember);
 			memberService.update(newMember);			
 		} else {

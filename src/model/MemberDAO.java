@@ -36,7 +36,7 @@ public class MemberDAO {
 	
 	public Member selectMember(Member member) {
 		int index = -1;
-		if((index = searchByID(member)) >= 0)
+		if((index = searchByEmail(member)) >= 0)
 			return memberList.get(index);
 		else
 			return null;
@@ -64,7 +64,7 @@ public class MemberDAO {
 		return searched;
 	}		
 	// 유일키(unique key)를 이용하여 검색하여 인덱스를 반환
-	public int searchByID(Member member) { 
+	public int searchByEmail(Member member) { 
 		int ret = -1; // ret가 0 이상이면 검색 성공, -1 이면 검색 실패
 		int index = 0;
 		/*
@@ -102,7 +102,7 @@ public class MemberDAO {
 		member.setAge(age);
 		
 		try {
-			int index = searchByID(member);
+			int index = searchByEmail(member);
 			if(index < 0) { // -1이면 검색 실패, 등록 가능함
 				fw = new MemberFileWriter(file);
 				memberList.add(member);
@@ -133,8 +133,8 @@ public class MemberDAO {
 		member.setAge(age);		
 		
 		try {
-			int index = searchByID(member);
-			if(index > 0) { // -1이면 검색 실패, 삭제 불가능, 0이상이어야 삭제가 가능
+			int index = searchByEmail(member);
+			if(index >= 0) { // -1이면 검색 실패, 삭제 불가능, 0이상이어야 삭제가 가능
 				fw = new MemberFileWriter(file);
 				memberList.set(index, member); // MemberList의 해당 인덱스에 새로운 요소가 설정
 				/*
@@ -151,8 +151,8 @@ public class MemberDAO {
 	public int delete(Member member) {		
 		int ret = -1; // 0 이상이면 해당 아이디가 존재하므로 삭제, -1이하이면 삭제 실패
 		try {
-			int index = searchByID(member);
-			if(index > 0) { // -1이면 검색 실패, 삭제 불가능, 0이상이어야 삭제가 가능
+			int index = searchByEmail(member);
+			if(index >= 0) { // -1이면 검색 실패, 삭제 불가능, 0이상이어야 삭제가 가능
 				fw = new MemberFileWriter(file);
 				memberList.remove(member);
 				/*
