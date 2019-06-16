@@ -64,10 +64,10 @@
             <TextField fx:id="tfContact" promptText="휴대폰(- 없이)" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <RadioButton fx:id="tfFemale" mnemonicParsing="false" text="여성" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <toggleGroup>
-                  <ToggleGroup fx:id="tfGender" />
+                  <ToggleGroup fx:id="tfGenderGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="tfMale" mnemonicParsing="false" selected="true" text="남성" toggleGroup="$tfGender" GridPane.rowIndex="6" />
+            <RadioButton fx:id="tfMale" mnemonicParsing="false" selected="true" text="남성" toggleGroup="$tfGenderGroup" GridPane.rowIndex="6" />
          </children>
       </GridPane>
             <Button id="btnRegister" fx:id="btnCreate" layoutX="14.0" layoutY="278.0" mnemonicParsing="false" onMouseClicked="#handleCreate" prefHeight="29.0" prefWidth="65.0" text="등록" />

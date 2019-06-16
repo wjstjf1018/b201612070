@@ -24,7 +24,8 @@ public class MemberFileReader {
 			m.setBirth(strArr[3]);
 			m.setAge(strArr[4]);
 			m.setAddress(strArr[5]);
-			m.setContact(strArr[6]);		
+			m.setContact(strArr[6]);	
+			m.setGender(strArr[7]);			
 			retObj.add(m);
 		}
 		return retObj;
