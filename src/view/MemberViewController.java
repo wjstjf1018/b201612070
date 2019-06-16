@@ -78,6 +78,7 @@ public class MemberViewController implements Initializable {
 		btnCreate.setOnMouseClicked(event -> handleCreate());		
 		btnDelete.setOnMouseClicked(e -> handleDelete());		
 		btnFindByAddress.setOnMouseClicked(event -> handleFindByAddress());	
+		btnFindByName.setOnMouseClicked(event -> handleFindByName());			
 		
 		loadMemberTableView();
 	}
@@ -137,6 +138,25 @@ public class MemberViewController implements Initializable {
 		else
 			this.showAlert("검색 조건을 입력하십시요");			
 	}
+	
+	@FXML 
+	private void handleFindByName() {
+		String condition = tfFindCondition.getText();
+		taFindResult.setText("");
+		if(condition.length() > 0) {
+			List<Member> searched = memberService.findByName(condition);
+			if(searched.size() > 0) {
+				int no = 1;
+				for(Member m : searched) {
+					taFindResult.appendText(no++ + " ) " + m.getAddress() + " : " + m.getEmail() + " : " + m.getName() + " \n");
+				}
+			}
+			else
+				taFindResult.setText("검색 조건에 맞는 정보가 없습니다.");
+		}
+		else
+			this.showAlert("검색 조건을 입력하십시요");			
+	}	
 	
 	@FXML 
 	private void handleCreate() { // event source, listener, handler

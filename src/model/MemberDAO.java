@@ -52,6 +52,17 @@ public class MemberDAO {
 		}				
 		return searched;
 	}	
+	public List<Member> searchByName(String name) { 
+		// 검색 결과를 저장할 ArrayList 형 객체 생성
+		List<Member> searched = new ArrayList<Member>();
+		for(Member m : memberList) {
+			if(m.getName().equals(name)) {
+				searched.add(m); // 검색된 정보를 추가함
+			}
+			// 검색이 안된 경우 스킵
+		}				
+		return searched;
+	}		
 	// 유일키(unique key)를 이용하여 검색하여 인덱스를 반환
 	public int searchByID(Member member) { 
 		int ret = -1; // ret가 0 이상이면 검색 성공, -1 이면 검색 실패
